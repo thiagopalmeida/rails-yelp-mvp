@@ -1,0 +1,41 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><strong>Name</strong></th>
+        <th><strong>Address</strong></th>
+        <th><strong>Phone number</strong></th>
+        <th><strong>Category</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @restaurant.name %></td>
+        <td><%= @restaurant.address %></td>
+        <td><%= @restaurant.phone_number %></td>
+        <td><%= @restaurant.category %></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <p class="my-1">
+    <strong>Reviews</strong>
+    <br>
+    <% @restaurant.reviews.each do |review| %>
+    <%= review.content %> - Rating: <%= review.rating %>
+    <hr>
+    <% end %>
+  </p>
+
+  <div class="form">
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit 'Submit Review', class: "btn btn-primary"  %>
+  <% end %>
+  </div>
+
+  <%= link_to '<i class="fas fa-angle-double-left mt-3"></i>'.html_safe, restaurants_path %>
+</div>
